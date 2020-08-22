@@ -1,23 +1,41 @@
 // 2
-
 const express = require('express')
 const router = express.Router()
 // untuk import method yang ada di /controller/product.js
 const productsController = require('../controllers/product')
+const { verifyAccess } = require('../middlewares/auth')
+const multer = require('multer')
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './uploads')
+  },
+  filename: function (req, file, cb) {
+    console.log(file)
+    cb(null, new Date() + file.originalname)
+  },
+})
+const upload = multer({ storage: storage })
 
 router
   // Get digunakan untuk mengambil data (mengambil data dari controller yang sudah dibuat)
-  .get('/', productsController.getAllProduct)
-  .get('/:id', productsController.getProductById)
+  .get('/', verifyAccess, productsController.getAllProduct)
+  .get('/:id', verifyAccess, productsController.getProductById)
   // Post untuk memposting data/meng-insert data
-  .post('/', productsController.insertProduct)
+  .post(
+    '/',
+    verifyAccess,
+    upload.single('image'),
+    productsController.insertProduct,
+  )
   // Patch digunakanu untuk mengupdate data
-  .patch('/:id', productsController.updateProduct)
+  .patch('/:id', verifyAccess, productsController.updateProduct)
   // Digunakan untuk mendelete data
-  .delete('/:id', productsController.deleteProduct)
+  .delete('/:id', verifyAccess, productsController.deleteProduct)
 module.exports = router
 
 // =============================
+
 //   Bisa juga menerima inputan parameter atau mengambil data dari nilai yang dimasukan di parameter
 // .patch("/:id", (req, res) => {
 //     const id = req.params.id;

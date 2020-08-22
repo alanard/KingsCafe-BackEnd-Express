@@ -5,9 +5,11 @@ const router = express.Router()
 const productsRoutes = require('./products')
 const categoriesRoutes = require('./categories')
 const historiesRoutes = require('./histories')
+const userRoutes = require('./users')
 router
   .use('/products', productsRoutes)
   .use('/categories', categoriesRoutes)
   .use('/histories', historiesRoutes)
+  .use('/users', userRoutes)
 
 module.exports = router

@@ -29,7 +29,16 @@ const products = {
     productModels
       .getProductById(id)
       .then((result) => {
-        helpers.response(res, result, 200, null)
+        if (result != '') {
+          helpers.response(res, result, 200, null)
+        } else {
+          helpers.response(
+            res,
+            'The product you are looking for does not exist',
+            404,
+            null,
+          )
+        }
       })
       .catch((err) => {
         console.log(err)
@@ -39,23 +48,33 @@ const products = {
   insertProduct: (req, res) => {
     // destructuring assigment
     // Data ini yang sesuai dengan postman
-    const { name, image, price, idCategory, status } = req.body
+    console.log(req)
+    const { name, price, idCategory, status } = req.body
     // Yang ini sesuai dengan database
     const data = {
       // karena property dan value nya sama maka cukup ditulis satu kali saja
       name,
-      image,
+      image: req.file.filename,
       price,
       idCategory,
       status,
       createdAt: new Date(),
-      updatedAt: new Date()
+      updatedAt: new Date(),
     }
     productModels
       .insertProduct(data)
       // Penamaan berbeda supaya tidak bentrok dengan res yang di atas
       .then((result) => {
-        helpers.response(res, result, 200, null)
+        if (data != null) {
+          helpers.response(res, result, 200, null)
+        } else {
+          helpers.response(
+            res,
+            'the data you entered could not be empty',
+            200,
+            null,
+          )
+        }
       })
       .catch((err) => {
         console.log(new Error(err))
@@ -73,7 +92,7 @@ const products = {
       idCategory,
       status,
       createdAt: new Date(),
-      updatedAt: new Date()
+      updatedAt: new Date(),
     }
     productModels
       .updateProduct(id, data)
@@ -92,12 +111,21 @@ const products = {
     productModels
       .deleteProduct(id)
       .then((result) => {
-        helpers.response(res, result, 200, null)
+        if (id !== '') {
+          helpers.response(res, result, 200, null)
+        } else {
+          helpers.response(
+            res,
+            'The product you are looking for does not exist',
+            200,
+            null,
+          )
+        }
       })
       .catch((err) => {
         console.log(err)
       })
-  }
+  },
 }
 
 module.exports = products
