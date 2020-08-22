@@ -25,7 +25,7 @@ const products = {
             if (!err) {
               resolve(result);
             } else {
-              reject(err.message("Data Not Found"));
+              reject(err.message(err));
             }
           }
         );
@@ -45,26 +45,29 @@ const products = {
             }
           }
         );
-      } else if ((limit, page)) {
+      } else if (limit && page) {
         connection.query(
           `SELECT * FROM product LIMIT ${limit} OFFSET ${(page - 1) * limit}`,
           (err, result) => {
             if (!err) {
               resolve(result);
             } else {
-              reject(err.mesage("limitations exceed existing data"));
+              reject(err.mesage(err));
             }
           }
         );
       } else {
         //   lalu dipanggilah connection, dan di beri query perintah apa
-        connection.query("SELECT * FROM product", (err, result) => {
-          if (!err) {
-            resolve(result);
-          } else {
-            reject(new Error(err));
+        connection.query(
+          "SELECT product.*, category.nameCategory FROM product INNER JOIN category ON product.idCategory = category.idCategory",
+          (err, result) => {
+            if (!err) {
+              resolve(result);
+            } else {
+              reject(new Error(err));
+            }
           }
-        });
+        );
       }
     });
   },
