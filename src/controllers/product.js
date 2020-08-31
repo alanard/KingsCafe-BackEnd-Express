@@ -8,6 +8,10 @@ const productModels = require('../models/product')
 // Mengimport modules helper agar bisa digunakan
 const helpers = require('../helpers/helpers')
 
+// Import redis
+const redis = require('redis')
+const client = redis.createClient(process.env.PORT_REDIS)
+
 const products = {
   getAllProduct: (req, res) => {
     const search = req.query.search
@@ -18,6 +22,7 @@ const products = {
     productModels
       .getAllProduct(search, orderby, limit, page, sort)
       .then((result) => {
+        client.setex('getallproduct', 60 * 60 * 12, JSON.stringify(result))
         helpers.response(res, result, 200, null)
       })
       .catch((err) => {
@@ -48,13 +53,13 @@ const products = {
   insertProduct: (req, res) => {
     // destructuring assigment
     // Data ini yang sesuai dengan postman
-    console.log(req)
+    console.log(req.file)
     const { name, price, idCategory, status } = req.body
     // Yang ini sesuai dengan database
     const data = {
       // karena property dan value nya sama maka cukup ditulis satu kali saja
       name,
-      image: req.file.filename,
+      image: `http://localhost:4100/uploads/${req.file.filename}`,
       price,
       idCategory,
       status,

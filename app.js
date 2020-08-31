@@ -37,6 +37,8 @@ app.use('/api/v1/', routes)
 
 // Disini juga menggunakan dotenv agar lebih aman
 const PORT = process.env.PORT
+
+app.use('/uploads', express.static('./uploads'))
 app.listen(PORT, () => {
   console.log(`Server is running ${PORT}`)
 })

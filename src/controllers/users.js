@@ -3,7 +3,7 @@ const modelUser = require('../models/users')
 const helper = require('../helpers/helpers')
 const jwt = require('jsonwebtoken')
 module.exports = {
-  register: (req, res) => {
+  register: async (req, res) => {
     const { email, password, firstName, lastName } = req.body
 
     // const isUser = modelUser.cekEmail(email)
@@ -16,6 +16,12 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date(),
     }
+    const resultEmail = await modelUser.getUserByEmail(email)
+    if (resultEmail.length > 0) {
+      helper.response(res, { message: 'Email Sudah Terdaftar' }, 403, null)
+    } else if (resultEmail == '') {
+      helper.response(res, { message: 'Semua Data Harus Diisi' }, 403, null)
+    }
     bcrypt.genSalt(10, function (err, salt) {
       bcrypt.hash(data.password, salt, function (err, hash) {
         data.password = hash
@@ -24,7 +30,7 @@ module.exports = {
           .then((result) => {
             helper.response(res, result, 200, null)
           })
-          .catch((err) => {})
+          .catch((err) => { })
       })
     })
   },
@@ -54,7 +60,7 @@ module.exports = {
               jwt.sign(
                 payload,
                 process.env.SECRET_KEY,
-                { expiresIn: '1h' },
+                { expiresIn: '3h' },
                 (err, token) => {
                   user.token = token
 

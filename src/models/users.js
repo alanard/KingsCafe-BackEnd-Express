@@ -5,7 +5,11 @@ const users = {
     return new Promise((resolve, reject) => {
       connection.query('INSERT INTO user SET ?', data, (err, result) => {
         if (result) {
-          resolve(result)
+          if (data !== result) {
+            resolve(result)
+          } else {
+            console.log('data sudah ada')
+          }
         } else {
           reject(new Error(err))
         }

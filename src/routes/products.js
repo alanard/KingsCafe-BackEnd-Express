@@ -4,18 +4,8 @@ const router = express.Router()
 // untuk import method yang ada di /controller/product.js
 const productsController = require('../controllers/product')
 const { verifyAccess } = require('../middlewares/auth')
-const multer = require('multer')
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './uploads')
-  },
-  filename: function (req, file, cb) {
-    console.log(file)
-    cb(null, new Date() + file.originalname)
-  },
-})
-const upload = multer({ storage: storage })
+const uploadMulter = require('../middlewares/multer')
+const validationMulter = require('../middlewares/ValidationMulter')
 
 router
   // Get digunakan untuk mengambil data (mengambil data dari controller yang sudah dibuat)
@@ -25,7 +15,8 @@ router
   .post(
     '/',
     verifyAccess,
-    upload.single('image'),
+    uploadMulter,
+    validationMulter,
     productsController.insertProduct,
   )
   // Patch digunakanu untuk mengupdate data
