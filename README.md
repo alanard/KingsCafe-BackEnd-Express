@@ -17,7 +17,7 @@ king's-cafe backend is a backend for kings's-cafe frontend application. Built wi
 # How to run the app ?
 1. Open app's directory in CMD or Terminal
 2. Type npm install
-3. Make new file a called <b>.env </b>, set up first [here](https://github.com/alanard/KingsCafe-BackEnd-Express/#set-up-.env-file)
+3. Make new file a called <b>.env </b>, set up first [here](https://github.com/alanard/KingsCafe-BackEnd-Express/#set-up-env-file)
 4. Turn on Web Server and MySQL can using Third-party tool like xampp, or mampp, lampp, etc.
 5. Create a database with the name note, and Import file note.sql to phpmyadmin
 6. Open Postman desktop application or Chrome web app extension that has installed before
