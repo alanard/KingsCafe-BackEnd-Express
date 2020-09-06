@@ -22,7 +22,7 @@ king's-cafe backend is a backend for kings's-cafe frontend application. Built wi
 5. Create a database with the name note, and Import file note.sql to phpmyadmin
 6. Open Postman desktop application or Chrome web app extension that has installed before
 7. Choose HTTP Method and enter request url.
-8. You can see all the end point here
+8. You can see all the end point [here](https://github.com/alanard/KingsCafe-BackEnd-Express/#End-Point)
 
 ## Set up .env file
 Open .env file on your favorite code editor, and copy paste this code below :
