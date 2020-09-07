@@ -87,12 +87,12 @@ const products = {
   },
   updateProduct: (req, res) => {
     const id = req.params.id
-    const { name, image, price, idCategory, status } = req.body
+    const { name, price, idCategory, status } = req.body
     // Yang ini sesuai dengan database
     const data = {
       // karena property dan value nya sama maka cukup ditulis satu kali saja
       name,
-      image,
+      image: `http://localhost:4100/uploads/${req.file.filename}`,
       price,
       idCategory,
       status,

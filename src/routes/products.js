@@ -16,11 +16,13 @@ router
     '/',
     verifyAccess,
     uploadMulter,
-    validationMulter,
     productsController.insertProduct,
   )
   // Patch digunakanu untuk mengupdate data
-  .patch('/:id', verifyAccess, productsController.updateProduct)
+  .patch('/:id',
+    verifyAccess,
+    uploadMulter,
+    productsController.updateProduct)
   // Digunakan untuk mendelete data
   .delete('/:id', verifyAccess, productsController.deleteProduct)
 module.exports = router

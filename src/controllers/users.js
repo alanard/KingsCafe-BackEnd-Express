@@ -19,8 +19,6 @@ module.exports = {
     const resultEmail = await modelUser.getUserByEmail(email)
     if (resultEmail.length > 0) {
       helper.response(res, { message: 'Email Sudah Terdaftar' }, 403, null)
-    } else if (resultEmail == '') {
-      helper.response(res, { message: 'Semua Data Harus Diisi' }, 403, null)
     }
     bcrypt.genSalt(10, function (err, salt) {
       bcrypt.hash(data.password, salt, function (err, hash) {
@@ -30,7 +28,9 @@ module.exports = {
           .then((result) => {
             helper.response(res, result, 200, null)
           })
-          .catch((err) => { })
+          .catch((err) => {
+            console.log(err)
+          })
       })
     })
   },
@@ -60,7 +60,7 @@ module.exports = {
               jwt.sign(
                 payload,
                 process.env.SECRET_KEY,
-                { expiresIn: '3h' },
+                { expiresIn: '1h' },
                 (err, token) => {
                   user.token = token
 

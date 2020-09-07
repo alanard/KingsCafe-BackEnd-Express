@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 22 Agu 2020 pada 15.01
+-- Waktu pembuatan: 06 Sep 2020 pada 19.40
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.4
 
@@ -63,7 +63,8 @@ CREATE TABLE `history` (
 
 INSERT INTO `history` (`id`, `invoice`, `cashier`, `date`, `orders`, `amount`) VALUES
 (1, '2900129', 'alanard', '2020-08-06 21:28:41', 'coffe coffe dan coffe', 20000),
-(2, 'ahjas1871', 'budibudian', '2020-08-06 21:28:41', 'bunga bunga dan bunga', 30000);
+(2, 'ahjas1871', 'budibudian', '2020-08-06 21:28:41', 'bunga bunga dan bunga', 30000),
+(4, '1214435SDFS324', 'Karina salim', '2020-09-03 23:05:34', 'Nasi goreng, mie goreng, Cappucino', 50000);
 
 -- --------------------------------------------------------
 
@@ -97,22 +98,19 @@ INSERT INTO `product` (`id`, `name`, `image`, `price`, `idCategory`, `status`, `
 (12, 'Salmon Truffle Teriyaki', 'https://raw.githubusercontent.com/alanard/web-slicing-kingscafe/master/assets/img/img-card/salmon.png', 69000, '1', 10, '2020-08-18 09:44:04', '2020-08-18 09:44:04'),
 (13, 'Wiener Schnitzel', 'https://raw.githubusercontent.com/alanard/web-slicing-kingscafe/master/assets/img/img-card/wiener.png', 69, '2', 10, '2020-08-15 22:02:19', '2020-08-15 22:02:19'),
 (14, 'Black Coffe', 'https://raw.githubusercontent.com/alanard/web-slicing-kingscafe/master/assets/img/img-card/cappucino.png', 10000, '1', 10, '2020-08-18 09:46:05', '2020-08-18 09:46:05'),
-(16, 'nasgor', 'nasgor.jpg', 16000, '1', 1, '2020-08-10 11:48:26', '2020-08-10 11:48:26'),
-(24, 'asdasa', 'asdada', 1231, '12', 121, '2020-08-17 22:21:37', '2020-08-17 22:21:37'),
-(25, 'asdasa', 'asdada', 1231, '12', 121, '2020-08-17 22:21:53', '2020-08-17 22:21:53'),
-(26, 'asdada', 'asdadad', 1231, '121', 333, '2020-08-17 22:23:14', '2020-08-17 22:23:14'),
-(27, 'asdada', 'asdadad', 1231, '121', 333, '2020-08-17 22:23:16', '2020-08-17 22:23:16'),
-(28, 'asdada', 'asdadad', 1231, '121', 333, '2020-08-17 22:23:19', '2020-08-17 22:23:19'),
-(29, 'asdada', 'asdadad', 1231, '121', 333, '2020-08-17 22:23:20', '2020-08-17 22:23:20'),
-(30, 'asdadasd', 'asdadad', 1231, '11', 12, '2020-08-17 22:25:57', '2020-08-17 22:25:57'),
-(33, 'asdadas', 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FLatte&psig=AOvVaw1NMEd7YNi0Q6ckqpS1B9wQ&ust=1597796435032000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPijt9u9o-sCFQAAAAAdAAAAABAD', 12123, '12', 123, '2020-08-18 07:21:02', '2020-08-18 07:21:02'),
-(34, 'alan', 'asdad', 1231, '123', 123, '2020-08-18 07:21:23', '2020-08-18 07:21:23'),
-(35, 'alanard', 'asdasddsa', 12311, '211', 112112, '2020-08-18 07:22:31', '2020-08-18 07:22:31'),
-(36, 'kur kur', 'asdad', 11221, '12', 123, '2020-08-18 07:24:11', '2020-08-18 07:24:11'),
-(39, 'Ayam Kampung', 'ayam akmsdnakjsd', 30000, '2', 2, '2020-08-18 09:11:16', '2020-08-18 09:11:16'),
-(40, 'ayam bakar', 'awdada', 12313, '2', 22, '2020-08-18 09:13:25', '2020-08-18 09:13:25'),
-(43, 'rotisaja', 'asdf;lkj', 10000, '1', 10, '2020-08-22 13:21:56', '2020-08-22 13:21:56'),
-(44, 'rotisaja', 'asdf;lkj', 10000, '1', 10, '2020-08-22 13:32:10', '2020-08-22 13:32:10');
+(65, 'roti bakar', 'http://localhost:4100/uploads/Image-2020-08-23T04-49-39.574Zblackforest.png', 12000, '2', 12, '2020-08-23 11:49:39', '2020-08-23 11:49:39'),
+(76, 'black pink', 'http://localhost:4100/uploads/Image-2020-08-30T09-52-15.898Zredvelvet.png', 1234, '2', 2134, '2020-08-30 16:52:16', '2020-08-30 16:52:16'),
+(77, 'Donat', 'http://localhost:4100/uploads/Image-2020-08-30T14-50-36.388Zchocorum.png', 20000, '2', 20, '2020-08-30 21:50:38', '2020-08-30 21:50:38'),
+(78, 'Gelato', 'http://localhost:4100/uploads/Image-2020-08-30T14-51-09.951Zblackforest.png', 30000, '2', 20, '2020-08-30 21:51:10', '2020-08-30 21:51:10'),
+(79, 'Cendol Dawet 3', 'http://localhost:4100/uploads/Image-2020-09-04T16-29-15.267Zchickenkatsu.png', 15000, '1', 20, '2020-09-04 23:29:15', '2020-09-04 23:29:15'),
+(80, 'Ayam Bakar Kampung', 'http://localhost:4100/uploads/Image-2020-08-30T14-52-31.436Zwiener.png', 40000, '2', 20, '2020-08-30 21:52:32', '2020-08-30 21:52:32'),
+(81, 'Bakso Setan', 'http://localhost:4100/uploads/Image-2020-08-30T14-53-27.762Zchickenkatsu.png', 15000, '2', 20, '2020-08-30 21:53:28', '2020-08-30 21:53:28'),
+(82, 'HotDog', 'http://localhost:4100/uploads/Image-2020-08-30T14-53-53.669Zsalmon.png', 35000, '2', 20, '2020-08-30 21:53:53', '2020-08-30 21:53:53'),
+(84, 'Cilok', 'http://localhost:4100/uploads/Image-2020-08-30T14-55-23.226Zsalmon.png', 5000, '2', 20, '2020-08-30 21:55:23', '2020-08-30 21:55:23'),
+(85, 'Oreo', 'http://localhost:4100/uploads/Image-2020-08-30T14-59-57.610Zchocorum.png', 20000, '2', 30, '2020-08-30 21:59:58', '2020-08-30 21:59:58'),
+(96, 'baru pisan', 'http://localhost:4100/uploads/Image-2020-08-30T15-32-59.801Zsalmon.png', 20000, '200', 400, '2020-08-30 22:32:59', '2020-08-30 22:32:59'),
+(97, 'aaaaaaaa', 'http://localhost:4100/uploads/Image-2020-08-30T15-34-25.058Zsalmon.png', 2222, '2222', 222, '2020-08-30 22:34:25', '2020-08-30 22:34:25'),
+(106, 'baruuuuuuuuuuu', 'http://localhost:4100/uploads/Image-2020-09-04T13-14-16.012Zsalmon.png', 10000, '121', 2, '2020-09-04 20:14:16', '2020-09-04 20:14:16');
 
 -- --------------------------------------------------------
 
@@ -136,7 +134,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `password`, `roleId`, `firstName`, `lastName`, `createdAt`, `updatedAt`) VALUES
-(1, 'alanard@gmail.com', '$2a$10$EIbmH1hzk8s5ptQY/OnJhOY1gZhUGSohtw3no4xD8MepckVFpZchW', 2, 'alan', 'ard', 2020, 2020);
+(1, 'alanard@gmail.com', '$2a$10$EIbmH1hzk8s5ptQY/OnJhOY1gZhUGSohtw3no4xD8MepckVFpZchW', 2, 'alan', 'ard', 2020, 2020),
+(2, 'coba1@gmail.com', '$2a$10$X.DmFoEatBjCsmpaqqddoe1HWY5.DzHBmRsfVCEK77R5iVaZUYXFm', 2, 'coba', 'aja', 2020, 2020);
 
 --
 -- Indexes for dumped tables
@@ -180,19 +179,19 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT untuk tabel `history`
 --
 ALTER TABLE `history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
