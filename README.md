@@ -68,6 +68,8 @@ SECRET=[jwt_secret_key]
 <b>- DELETE</b> /api/v1/histories/:id<br>
 <b>- PATCH</b>/api/v1/histories/:id<br>
 
+## API documentation link
+- [See documentation](https://www.getpostman.com/collections/5c2db3392bfc3b7f9a46)
 
 ## Related Project
 - [Frontend-King'sCafe](https://github.com/alanard/Kingscafe-frontend-vue)
