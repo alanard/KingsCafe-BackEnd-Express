@@ -4,14 +4,14 @@ const helpers = require('../helpers/helpers')
 
 // Import redis
 const redis = require('redis')
-const client = redis.createClient(process.env.PORT_REDIS)
+// const client = redis.createClient(process.env.PORT_REDIS)
 
 const categories = {
   getAllCategories: (req, res) => {
     categoriesModels
       .getAllCategories()
       .then((result) => {
-        client.setex('getallcategories', 60 * 60 * 12, JSON.stringify(result))
+        // client.setex('getallcategories', 60 * 60 * 12, JSON.stringify(result))
         helpers.response(res, result, 200, null)
       })
       .catch((err) => {
