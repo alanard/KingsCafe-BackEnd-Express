@@ -1,7 +1,7 @@
 // import modul express
 const express = require('express')
 const router = express.Router()
-const redis = require('../middlewares/redis')
+// const redis = require('../middlewares/redis')
 
 const categoriesControllers = require('../controllers/categories')
 

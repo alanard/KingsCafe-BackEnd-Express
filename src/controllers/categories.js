@@ -3,7 +3,7 @@ const categoriesModels = require('../models/categories')
 const helpers = require('../helpers/helpers')
 
 // Import redis
-const redis = require('redis')
+// const redis = require('redis')
 // const client = redis.createClient(process.env.PORT_REDIS)
 
 const categories = {
