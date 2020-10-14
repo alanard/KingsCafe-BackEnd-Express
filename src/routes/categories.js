@@ -6,7 +6,7 @@ const redis = require('../middlewares/redis')
 const categoriesControllers = require('../controllers/categories')
 
 router
-  .get('/', redis.cacheGetAllProduct, categoriesControllers.getAllCategories)
+  .get('/', categoriesControllers.getAllCategories)
   .get('/:id', categoriesControllers.getCategoriesById)
   .post('/', categoriesControllers.insertCategories)
   .patch('/:id', categoriesControllers.updateCategories)
