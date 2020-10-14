@@ -1,9 +1,30 @@
 const connection = require('../configs/db')
 
 const histories = {
-  getAllHistories: () => {
+  getAllHistories: (orderby, sort) => {
     return new Promise((resolve, reject) => {
-      connection.query('SELECT * FROM history', (err, result) => {
+      if ((orderby, sort)) {
+          connection.query(`SELECT * FROM history ORDER BY ${orderby} ${sort}`, (err, result) => {
+          if (!err) {
+            resolve(result)
+          } else {
+            reject(new Error(err))
+          }
+        })
+      } else {
+        connection.query(`SELECT * FROM history`, (err, result) => {
+          if (!err) {
+            resolve(result)
+          } else {
+            reject(new Error(err))
+          }
+        })
+      }
+    })
+  },
+  getDateHistory: () => {
+    return new Promise((resolve, reject) => {
+      connection.query(`SELECT SUM(amount) as amount , DATE(date) as date FROM history WHERE date >= CURRENT_DATE() GROUP BY DATE(date)`, (err, result) => {
         if (!err) {
           resolve(result)
         } else {
@@ -12,7 +33,28 @@ const histories = {
       })
     })
   },
-
+  getMonthHistory: () => {
+    return new Promise((resolve, reject) => {
+      connection.query(`SELECT SUM(amount) as amount, DATE(date) as date FROM history WHERE date between DATE_FORMAT(CURDATE() ,'%Y-%m-01') AND CURDATE()`, (err, result) => {
+        if (!err) {
+          resolve(result)
+        } else {
+          reject(new Error(err))
+        }
+      })
+    })
+  },
+  getYearHistory: () => {
+    return new Promise((resolve, reject) => {
+      connection.query(`select SUM(amount) as amount, DATE(date) as date from history WHERE date >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)`, (err, result) => {
+        if (!err) {
+          resolve(result)
+        } else {
+          reject(new Error(err))
+        }
+      })
+    })
+  },
   getHistoriesById: (id) => {
     return new Promise((resolve, reject) => {
       connection.query(

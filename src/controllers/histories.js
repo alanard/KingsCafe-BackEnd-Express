@@ -4,8 +4,13 @@ const helpers = require('../helpers/helpers')
 
 const histories = {
   getAllHistories: (req, res) => {
-    historiesModels
-      .getAllHistories()
+    const orderby = req.query.orderby
+    const sort = req.query.sort
+    const promise1 = historiesModels.getAllHistories(orderby, sort)
+    const promise2 = historiesModels.getDateHistory()
+    const promise3 = historiesModels.getMonthHistory()
+    const promise4 = historiesModels.getYearHistory()
+    Promise.all([promise1, promise2, promise3, promise4])
       .then((result) => {
         helpers.response(res, result, 200, null)
       })
@@ -13,7 +18,6 @@ const histories = {
         console.log(err)
       })
   },
-
   getHistoriesById: (req, res) => {
     const id = req.params.id
     historiesModels
@@ -27,11 +31,11 @@ const histories = {
   },
 
   insertHistories: (req, res) => {
-    const { invoice, cashier, date, orders, amount } = req.body
+    const { invoice, cashier, orders, amount } = req.body
     const data = {
       invoice,
       cashier,
-      date,
+      date: new Date(),
       orders,
       amount
     }

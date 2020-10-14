@@ -10,15 +10,22 @@ const helpers = require('../helpers/helpers')
 
 // Import redis
 const redis = require('redis')
+const { totalData } = require('../models/product')
 const client = redis.createClient(process.env.PORT_REDIS)
 
 const products = {
-  getAllProduct: (req, res) => {
+  getAllProduct: async (req, res) => {
     const search = req.query.search
     const orderby = req.query.orderby
     const limit = req.query.limit
     const page = req.query.page
     const sort = req.query.sort
+    // const pagination = {}
+    // const ResultTotalData = await totalData()
+    // pagination.totalData = ResultTotalData[0].totalData
+    // pagination.totalPage = Math.ceil(totalData/limit)
+    // pagination.currentPage = page
+    // pagination.nextPage = page < totalPage ? `${process.env.URL}:${process.env.PORT}`
     productModels
       .getAllProduct(search, orderby, limit, page, sort)
       .then((result) => {
@@ -92,12 +99,14 @@ const products = {
     const data = {
       // karena property dan value nya sama maka cukup ditulis satu kali saja
       name,
-      image: `http://localhost:4100/uploads/${req.file.filename}`,
       price,
       idCategory,
       status,
       createdAt: new Date(),
       updatedAt: new Date(),
+    }
+    if (req.file) {
+      data.image = `http://localhost:4100/uploads/${req.file.filename}`
     }
     productModels
       .updateProduct(id, data)

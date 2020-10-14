@@ -71,7 +71,20 @@ const products = {
       }
     })
   },
-
+  totalData: () => {
+    return new Promise((resolve, reject) => {
+      connection.query(
+        'SELECT COUNT(*) AS total_data FROM product',
+        (err, result) => {
+          if (!err) {
+            resolve(result)
+          } else {
+            reject(new Error(err))
+          }
+        },
+      )
+    })
+  },
   // GET BY ID
   getProductById: (id) => {
     return new Promise((resolve, reject) => {

@@ -1,5 +1,4 @@
 const connection = require('../configs/db')
-
 const users = {
   register: (data) => {
     return new Promise((resolve, reject) => {

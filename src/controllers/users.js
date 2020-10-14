@@ -6,6 +6,7 @@ module.exports = {
   register: async (req, res) => {
     const { email, password, firstName, lastName } = req.body
 
+    // console.log(req.body)
     // const isUser = modelUser.cekEmail(email)
     const data = {
       email,
@@ -15,6 +16,9 @@ module.exports = {
       roleId: 2,
       createdAt: new Date(),
       updatedAt: new Date(),
+    }
+    if ({ data } === null) {
+      helper.response(res, { message: 'Semua data harus di isi' }, 403, null)
     }
     const resultEmail = await modelUser.getUserByEmail(email)
     if (resultEmail.length > 0) {
@@ -43,7 +47,7 @@ module.exports = {
           helper.response(
             res,
             { message: 'the email you entered is not registered' },
-            201,
+            403,
             null,
           )
         } else {
@@ -74,7 +78,7 @@ module.exports = {
               helper.response(
                 res,
                 { message: 'the password you entered is incorrect' },
-                201,
+                403,
                 null,
               )
             }
