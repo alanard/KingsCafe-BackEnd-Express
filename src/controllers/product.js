@@ -8,6 +8,8 @@ const productModels = require('../models/product')
 // Mengimport modules helper agar bisa digunakan
 const helpers = require('../helpers/helpers')
 
+require('dotenv').config()
+
 // Import redis
 const redis = require('redis')
 const { totalData } = require('../models/product')
@@ -66,7 +68,7 @@ const products = {
     const data = {
       // karena property dan value nya sama maka cukup ditulis satu kali saja
       name,
-      image: `${proccess.env.BASE_URL}uploads/${req.file.filename}`,
+      image: `${process.env.BASE_URL}uploads/${req.file.filename}`,
       price,
       idCategory,
       status,
@@ -106,7 +108,7 @@ const products = {
       updatedAt: new Date(),
     }
     if (req.file) {
-      data.image = `${proccess.env.BASE_URL}uploads/${req.file.filename}`
+      data.image = `${process.env.BASE_URL}uploads/${req.file.filename}`
     }
     productModels
       .updateProduct(id, data)
