@@ -66,7 +66,7 @@ const products = {
     const data = {
       // karena property dan value nya sama maka cukup ditulis satu kali saja
       name,
-      image: `http://localhost:4100/uploads/${req.file.filename}`,
+      image: `${proccess.env.BASE_URL}uploads/${req.file.filename}`,
       price,
       idCategory,
       status,
@@ -106,7 +106,7 @@ const products = {
       updatedAt: new Date(),
     }
     if (req.file) {
-      data.image = `http://localhost:4100/uploads/${req.file.filename}`
+      data.image = `${proccess.env.BASE_URL}uploads/${req.file.filename}`
     }
     productModels
       .updateProduct(id, data)
