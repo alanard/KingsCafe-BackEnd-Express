@@ -24,7 +24,7 @@ const histories = {
   },
   getDateHistory: () => {
     return new Promise((resolve, reject) => {
-      connection.query(`SELECT SUM(amount) as amount , DATE(date) as date FROM history WHERE date >= CURRENT_DATE() GROUP BY DATE(date)`, (err, result) => {
+      connection.query(`SELECT SUM(amount) as amountDate , DATE(date) as date FROM history WHERE date >= CURRENT_DATE() GROUP BY DATE(date)`, (err, result) => {
         if (!err) {
           resolve(result)
         } else {
@@ -35,7 +35,7 @@ const histories = {
   },
   getMonthHistory: () => {
     return new Promise((resolve, reject) => {
-      connection.query(`SELECT SUM(amount) as amount, DATE(date) as date FROM history WHERE date between DATE_FORMAT(CURDATE() ,'%Y-%m-01') AND CURDATE()`, (err, result) => {
+      connection.query(`SELECT SUM(amount) as amountMonth, DATE(date) as date FROM history WHERE date between DATE_FORMAT(CURDATE() ,'%Y-%m-01') AND CURDATE()`, (err, result) => {
         if (!err) {
           resolve(result)
         } else {
@@ -46,7 +46,7 @@ const histories = {
   },
   getYearHistory: () => {
     return new Promise((resolve, reject) => {
-      connection.query(`select SUM(amount) as amount, DATE(date) as date from history WHERE date >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)`, (err, result) => {
+      connection.query(`select SUM(amount) as amountYear, DATE(date) as date from history WHERE date >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)`, (err, result) => {
         if (!err) {
           resolve(result)
         } else {
